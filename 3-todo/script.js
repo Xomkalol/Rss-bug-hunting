@@ -53,7 +53,18 @@ function updateCounter() {
 }
 
 function render() {
-  const visible = getVisibleTasks();
+  let visible;
+  switch (currentFilter) {
+    case "active":
+      visible = getVisibleTasks().filter((t) => t.done === false);
+      break;
+    case "done":
+      visible = getVisibleTasks().filter((t) => t.done === true);
+      break;
+    case "all":
+      visible = getVisibleTasks();
+      break;
+  }
   list.replaceChildren();
   if (visible.length !== 0) {
     for (let i = 0; i < visible.length; i++) {
