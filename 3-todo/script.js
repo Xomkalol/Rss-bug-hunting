@@ -25,7 +25,11 @@ function addTask() {
 
 function toggleTask(id) {
   const task = tasks.find((t) => t.id === id);
-  task.done = true;
+  if (task.done == true) {
+    task.done = false;
+  } else {
+    task.done = true;
+  }
   render();
 }
 
