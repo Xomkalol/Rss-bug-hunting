@@ -55,14 +55,19 @@ function addToCart(id) {
 
 function increaseQty(id) {
   const item = cart.find((i) => i.id === id);
+  const product = products.find((p) => p.id === id);
   item.qty += 1;
-  item.price += item.price;
+  item.price += product.price;
   renderCart();
 }
 
 function decreaseQty(id) {
   const item = cart.find((i) => i.id === id);
-  item.qty--;
+  const product = products.find((p) => p.id === id);
+  if (item.qty !== 1) {
+    item.qty -= 1;
+    item.price -= product.price;
+  }
   renderCart();
 }
 
