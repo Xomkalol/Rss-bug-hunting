@@ -124,10 +124,12 @@ function renderCart() {
     badgeElQty = cart.reduce((accumulator, currentValue) => {
       return accumulator + currentValue.qty;
     }, 0);
+    emptyMsg.hidden = true;
+  } else {
+    emptyMsg.hidden = false;
   }
   badgeEl.textContent = badgeElQty;
   totalEl.textContent = total;
-  emptyMsg.hidden = true;
 }
 
 promoBtn.addEventListener("click", applyPromo);
