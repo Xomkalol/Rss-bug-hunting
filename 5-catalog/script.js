@@ -22,22 +22,22 @@ function getFiltered() {
   const category = categorySelect.value;
   const sort = sortSelect.value;
 
-  if (search) {
-    result = result.filter((p) =>
-      p.name.toLocaleLowerCase().startsWith(search.toLocaleLowerCase()),
-    );
-  }
-
-  if (category !== "all") {
-    result = products.filter((p) => p.category === category);
-  }
-
   if (sort === "asc") {
     result.sort((a, b) => a.price - b.price);
   } else if (sort === "desc") {
     result.sort((a, b) => b.price - a.price);
   } else {
     result = products;
+  }
+
+  if (category !== "all") {
+    result = result.filter((p) => p.category === category);
+  }
+
+  if (search) {
+    result = result.filter((p) =>
+      p.name.toLocaleLowerCase().startsWith(search.toLocaleLowerCase()),
+    );
   }
 
   return result;
