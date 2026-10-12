@@ -91,6 +91,7 @@ function clearCart() {
 function renderCart() {
   cartItemsEl.innerHTML = "";
   let total = 0;
+  let badgeElQty = 0;
   cart.forEach((item) => {
     const lineTotal = item.price;
     const li = document.createElement("li");
@@ -117,8 +118,12 @@ function renderCart() {
   if (discount) {
     total = total - total * discount;
   }
-
-  badgeEl.textContent = cart.length;
+  if (cart.length !== 0) {
+    badgeElQty = cart.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.qty;
+    }, 0);
+  }
+  badgeEl.textContent = badgeElQty;
   totalEl.textContent = total;
   emptyMsg.hidden = true;
 }
